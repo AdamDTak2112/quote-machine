@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import QuoteModal from './components/QuoteModal';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
