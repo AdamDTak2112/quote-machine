@@ -1,5 +1,7 @@
 .App {
-  text-align: center;
+  position: flex;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 
