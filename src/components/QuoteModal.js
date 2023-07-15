@@ -6,10 +6,7 @@ export default function QuoteModal () {
     const [quote, setQuote] = useState('');
     const [author, setAuthor] = useState('');
 
-    
-
-    //function handleClick() {
-    const fetchPosts = async () => {
+    const getQuote = () => {
         var myHeaders = new Headers();
         myHeaders.append("X-Api-Key", "fmjA8krpg2TL/eA8sr0MEg==VKdxMrE1iNhDLik9");
     
@@ -18,15 +15,16 @@ export default function QuoteModal () {
             headers: myHeaders,
             redirect: 'follow'
         };
-        const response = await fetch("https://api.api-ninjas.com/v1/quotes", requestOptions);
-        const data = await response.json();
-        setQuote(data[0]);
-        console.log(data[0]);
-        console.log(quote);
-    };
+        fetch("https://api.api-ninjas.com/v1/quotes", requestOptions)
+            .then((response) => response.json())
+            .then((data) => {
+                setQuote(data[0]);
+                console.log("Data received: " + quote.quote);
+            })
+    }
 
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchData = () => {
             var myHeaders = new Headers();
             myHeaders.append("X-Api-Key", "fmjA8krpg2TL/eA8sr0MEg==VKdxMrE1iNhDLik9");
         
@@ -35,15 +33,18 @@ export default function QuoteModal () {
                 headers: myHeaders,
                 redirect: 'follow'
             };
-            const response = await fetch("https://api.api-ninjas.com/v1/quotes", requestOptions);
-            const data = await response.json();
-            setQuote(data);
+            fetch("https://api.api-ninjas.com/v1/quotes", requestOptions)
+            .then((response) => response.json())
+            .then((data) => {
+                setQuote(data[0]);
+                console.log("Data received: " + quote.quote);
+            });
         };
         fetchData();
-    }, [setQuote, quote]);
+    }, []);
 
     function handleClick() {
-        fetchPosts();
+        getQuote();
     }
     //}
 
@@ -55,9 +56,9 @@ export default function QuoteModal () {
                 <Card.Header>Quote Generator</Card.Header>
                 <Card.Body>
                     <blockquote className="blockquote">
-                        <p id="text">Quote Here</p>
+                        <p id="text">{quote.quote}</p>
                         <footer className="blockquote-footer" id="author">
-                            Author here
+                            {quote.author}
                         </footer>
                     </blockquote>
                 </Card.Body>
