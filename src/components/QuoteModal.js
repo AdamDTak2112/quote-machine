@@ -4,7 +4,7 @@ import {useState, useEffect} from 'react';
 
 export default function QuoteModal () {
     const [quote, setQuote] = useState('');
-    const [author, setAuthor] = useState('');
+    
 
     const getQuote = () => {
         var myHeaders = new Headers();
