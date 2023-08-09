@@ -62,7 +62,7 @@ export default function QuoteModal () {
                         </footer>
                     </blockquote>
                 </Card.Body>
-                <Button onClick={handleClick}>New Quote</Button>
+                <Button onClick={handleClick} id="new-quote">New Quote</Button>
             </Card>
             
         </div>
